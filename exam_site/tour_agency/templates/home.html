@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+{% if app_list %}
+{% for app in app_list %}
+<div class="container">
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Заявка: {{ app.id }}</h5>
+          <p class="card-text">
+            {{app.date_applied}}
+          </p>
+          <p class="card-text">
+            {{app.comments}}
+          </p>
+          <p class="card-text">
+            {{app.client}}
+          </p>
+          <p class="card-text">
+            {{app.tour}}
+          </p>
+          <a href="{% url 'update_application' app.id%}" class="btn btn-primary">Обновить</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-100"></div>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% else %}
+
+<div class="col-md-6 offset-md-3">
+    <h1>Регистрация</h1>
+    <br/>
+    
+    <form method="POST" action="{% url 'home'%}">
+        {% csrf_token %}
+    
+        {{ form.as_p }}
+        
+    
+        <br/>
+          <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+    
+    
+    
+    </div>
+{% endif %}
+{% endblock %}
