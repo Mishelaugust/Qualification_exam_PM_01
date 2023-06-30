@@ -73,3 +73,10 @@ def update_application(request, pk):
         form = ApplicationForm(instance=application)
     
     return render(request, 'update_application.html', {'form': form})
+
+
+def delete_application(request, pk):
+    manager_record = Application.objects.get(id=pk)
+    manager_record.delete()
+    messages.success(request, f"Заявка удалена!")
+    return redirect('home')

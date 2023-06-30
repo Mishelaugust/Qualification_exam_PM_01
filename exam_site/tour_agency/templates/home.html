@@ -25,6 +25,7 @@
             {{app.tour}}
           </p>
           <a href="{% url 'update_application' app.id%}" class="btn btn-primary">Обновить</a>
+          <a class="btn btn-outline-danger" href="{% url 'delete_application' app.id %}" role="button">Удалить</a>
         </div>
       </div>
     </div>
